@@ -87,7 +87,7 @@ export async function POST(request: Request) {
         "X-Title": "Amitoz Jatana Digital Twin",
       },
       body: JSON.stringify({
-        model: "nvidia/nemotron-3.5-super-vl:free",
+        model: "baidu/ernie-5.5-flash-preview:free",
         messages: [{ role: "system", content: DIGITAL_TWIN_PROFILE }, ...messages],
         max_tokens: 700,
         temperature: 0.25,

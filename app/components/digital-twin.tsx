@@ -62,14 +62,14 @@ export default function DigitalTwin() {
         <div className="twin-window">
           <div className="twin-topbar">
             <div className="twin-identity"><span className="twin-avatar">AJ<span>.</span></span><span><strong>Amitoz&apos;s Digital Twin</strong><small><i /> PROFILE-GROUNDED AI</small></span></div>
-            <span className="twin-model">NEMOTRON 3.5 <b>·</b> OPENROUTER</span>
+            <span className="twin-model">ERNIE 5.5 FLASH <b>·</b> OPENROUTER</span>
           </div>
 
           {!started ? (
             <div className="twin-consent">
               <span className="consent-icon">✳</span>
               <h3>A little context, before we chat.</h3>
-              <p>Your questions and a résumé-based profile summary are sent to OpenRouter&apos;s free NVIDIA model to generate replies. OpenRouter notes that free endpoint requests may be logged and used to improve NVIDIA products. Please don&apos;t share private or sensitive information.</p>
+              <p>Your questions and a résumé-based profile summary are sent to OpenRouter and the inference provider selected for this free model. Please don&apos;t share private or sensitive information.</p>
               <button className="button button-primary" onClick={() => setStarted(true)}>Start a conversation <span>↗</span></button>
             </div>
           ) : (

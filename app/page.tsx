@@ -1,7 +1,12 @@
+import Image from "next/image";
+import headshot from "../assets/amitoz_headshot_transparent.png";
+import doordashLogo from "../assets/doordash-logo.png";
+import ontarioLogo from "../assets/ontario-government.png";
+import rbcLogo from "../assets/rbc-logo.png";
+import uoftLogo from "../assets/uoft-logo.png";
 import DigitalTwin from "./components/digital-twin";
 
 const links = {
-  portfolio: "https://amitozjatana.vercel.app/",
   github: "https://github.com/A-Jatana",
   linkedin: "https://www.linkedin.com/in/amitozjatana/",
   email: "mailto:amitozjatana@gmail.com",
@@ -12,6 +17,8 @@ const roles = [
     date: "DEC 2026 —",
     type: "UP NEXT",
     company: "DoorDash",
+    logo: doordashLogo,
+    logoClass: "logo-doordash",
     title: "Software Engineer · Product Engineering",
     location: "Toronto, Canada",
     detail: "Incoming backend engineer, building the systems behind products people rely on every day.",
@@ -21,6 +28,8 @@ const roles = [
     date: "MAY — NOV 2026",
     type: "FULL-TIME",
     company: "Royal Bank of Canada",
+    logo: rbcLogo,
+    logoClass: "logo-rbc",
     title: "Software Engineer",
     location: "Toronto, Canada",
     detail: "Automated enterprise data and release workflows across cloud and analytics platforms.",
@@ -34,6 +43,8 @@ const roles = [
     date: "MAY 2024 — AUG 2025",
     type: "INTERNSHIP",
     company: "Royal Bank of Canada",
+    logo: rbcLogo,
+    logoClass: "logo-rbc",
     title: "Software Engineer Intern",
     location: "Toronto, Canada",
     detail: "Prototyped safe cloud automation and AI-powered tools for engineering teams.",
@@ -46,6 +57,8 @@ const roles = [
     date: "SEP — DEC 2023",
     type: "INTERNSHIP",
     company: "Treasury Board Secretariat",
+    logo: ontarioLogo,
+    logoClass: "logo-ontario",
     title: "Software Engineer Intern",
     location: "Toronto, Canada",
     detail: "Shipped interactive web prototypes and helped modernize backend services.",
@@ -91,15 +104,19 @@ export default function Home() {
           <a href="#about">About</a>
           <a href="#digital-twin">Digital twin</a>
           <a href="#journey">Journey</a>
-          <a href="#work">Selected work</a>
           <a href="#education">Education</a>
+          <a href="#work">Selected work</a>
         </nav>
         <a className="nav-cta" href={links.email}>Let&apos;s talk <span>↗</span></a>
       </header>
 
       <section className="hero shell" id="top">
         <div className="hero-copy">
-          <div className="eyebrow"><span className="status-dot" /> TORONTO, CANADA <span className="eyebrow-divider">/</span> SOFTWARE ENGINEER</div>
+          <div className="hero-person">
+            <div className="hero-headshot"><Image src={headshot} alt="Portrait of Amitoz Jatana" width={54} height={54} priority /></div>
+            <div className="hero-person-copy"><strong>Amitoz Jatana</strong><span>SOFTWARE ENGINEER <i>/</i> TORONTO, CANADA</span></div>
+          </div>
+          <div className="eyebrow"><span className="status-dot" /> SYSTEMS <span className="eyebrow-divider">/</span> AUTOMATION <span className="eyebrow-divider">/</span> PRODUCT</div>
           <h1>Build with<br />intention<span className="period">.</span></h1>
           <p className="hero-intro">I&apos;m Amitoz — an engineer drawn to the space where robust systems meet useful ideas.</p>
           <div className="hero-actions">
@@ -128,13 +145,12 @@ export default function Home() {
           <div className="about-copy">
             <p>I&apos;m a Toronto-based software engineer who enjoys making complex things feel simple — from reliable data pipelines to intelligent tools that give people their time back.</p>
             <p>My experience spans enterprise engineering at RBC, public service, and the next chapter at DoorDash. I care about how systems work under the hood, and how they feel to the people using them.</p>
-            <div className="about-links"><a href={links.portfolio} target="_blank" rel="noreferrer">Portfolio <span>↗</span></a><a href={links.github} target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a></div>
+            <div className="about-links"><a href={links.github} target="_blank" rel="noreferrer">GitHub <span>↗</span></a><a href={links.linkedin} target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a><a href="/amitoz_resume.pdf" download>Download résumé <span>↓</span></a></div>
           </div>
         </div>
         <div className="stats-row">
-          <div className="stat"><strong>250<span>+</span></strong><span>HOURS SAVED THROUGH AUTOMATION</span></div>
-          <div className="stat"><strong>16</strong><span>PRODUCTION AIRFLOW DAGS MIGRATED</span></div>
-          <div className="stat"><strong>3<span>×</span></strong><span>ENGINEERING TEAMS AND ENVIRONMENTS</span></div>
+          <div className="stat"><strong>250<span>+</span></strong><span>HOURS SAVED ANNUALLY THROUGH AUTOMATION</span></div>
+          <div className="stat"><strong>2<span>+</span></strong><span>YEARS OF INDUSTRY EXPERIENCE</span></div>
         </div>
       </section>
 
@@ -149,7 +165,7 @@ export default function Home() {
               <div className="timeline-date">{role.date}<span>{role.type}</span></div>
               <div className="timeline-marker"><span /></div>
               <div className="timeline-card">
-                <div className="timeline-heading"><div><h3>{role.company}</h3><p>{role.title}</p></div><span className="location">{role.location}</span></div>
+                <div className="timeline-heading"><div className="company-heading"><span className="company-logo"><Image className={role.logoClass} src={role.logo} alt="" width={40} height={40} /></span><div><h3>{role.company}</h3><p>{role.title}</p></div></div><span className="location">{role.location}</span></div>
                 <p className="role-detail">{role.detail}</p>
                 {role.highlights && <ul>{role.highlights.map((item) => <li key={item}>{item}</li>)}</ul>}
                 {role.current && <span className="incoming-tag">INCOMING <span>↗</span></span>}
@@ -159,19 +175,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="work section shell" id="work">
-        <div className="section-kicker"><span>04</span> SELECTED WORK</div>
+      <section className="education section" id="education">
+        <div className="shell education-inner">
+          <div><div className="section-kicker"><span>04</span> THE FOUNDATION</div><h2>Learn deeply.<br />Keep building<span className="period">.</span></h2></div>
+          <div className="education-card"><span className="education-mark"><Image className="uoft-logo" src={uoftLogo} alt="" width={60} height={60} /></span><div className="education-details"><span className="education-date">SEP 2021 — APR 2026</span><h3>University of Toronto</h3><p>Honours Bachelor of Science</p><p className="degree">Computer Science · Software Engineering Specialist</p><div className="education-extra"><span>TEACHING ASSISTANT</span><p>Data Structures · Algorithms · Object-Oriented Programming</p></div><div className="coursework"><span>SELECTED COURSEWORK</span><p>Operating Systems · Advanced Algorithms · Databases · Graduate Machine Learning</p></div></div></div>
+        </div>
+      </section>
+
+      <section className="work section" id="work">
+        <div className="shell">
+        <div className="section-kicker"><span>05</span> SELECTED WORK</div>
         <div className="section-heading"><h2>Ideas made<br />tangible<span className="period">.</span></h2><p>A few things I&apos;ve built<br />and learned along the way.</p></div>
         <div className="project-grid">{projects.map((project) => <article className="project-card" key={project.number}>
           <div className={`project-visual project-visual-${project.number}`}><span className="project-num">{project.number} / 02</span><span className="project-mark">{project.mark}</span><div className="project-orbit p-orbit-a"/><div className="project-orbit p-orbit-b"/><span className="project-visual-label">{project.number === "01" ? "CONTEXT → RESPONSE" : "INTEREST → COMMUNITY"}</span></div>
           <div className="project-info"><span className="project-label">{project.label}</span><h3>{project.title}</h3><p>{project.copy}</p><div className="tag-list">{project.stack.map((item) => <span key={item}>{item}</span>)}</div></div>
         </article>)}</div>
-      </section>
-
-      <section className="education section" id="education">
-        <div className="shell education-inner">
-          <div><div className="section-kicker"><span>05</span> THE FOUNDATION</div><h2>Learn deeply.<br />Keep building<span className="period">.</span></h2></div>
-          <div className="education-card"><span className="education-mark">U<span>T</span></span><div className="education-details"><span className="education-date">SEP 2021 — APR 2026</span><h3>University of Toronto</h3><p>Honours Bachelor of Science</p><p className="degree">Computer Science · Software Engineering Specialist</p><div className="education-extra"><span>TEACHING ASSISTANT</span><p>Data Structures · Algorithms · Object-Oriented Programming</p></div><div className="coursework"><span>SELECTED COURSEWORK</span><p>Operating Systems · Advanced Algorithms · Databases · Graduate Machine Learning</p></div></div></div>
         </div>
       </section>
 
@@ -180,7 +198,7 @@ export default function Home() {
         <div className="skills-list">{skillGroups.map((group) => <div className="skill-row" key={group.title}><span>{group.title}</span><p>{group.items}</p></div>)}</div>
       </section>
 
-      <footer className="footer" id="contact"><div className="shell"><div className="footer-top"><div><div className="section-kicker"><span>07</span> THE NEXT CONVERSATION</div><h2>Have a good<br />problem in mind<span className="period">?</span></h2></div><a className="footer-mail" href={links.email}>Let&apos;s talk <span>↗</span></a></div><div className="footer-bottom"><a className="wordmark" href="#top">AJ<span>.</span></a><span>DESIGNED & BUILT WITH INTENTION</span><div><a href={links.github} target="_blank" rel="noreferrer">GITHUB ↗</a><a href={links.linkedin} target="_blank" rel="noreferrer">LINKEDIN ↗</a><a href={links.portfolio} target="_blank" rel="noreferrer">PORTFOLIO ↗</a></div><span>© 2026 AMITOZ JATANA</span></div></div></footer>
+      <footer className="footer" id="contact"><div className="shell"><div className="footer-top"><div><div className="section-kicker"><span>07</span> THE NEXT CONVERSATION</div><h2>Have a good<br />problem in mind<span className="period">?</span></h2></div><a className="footer-mail" href={links.email}>Let&apos;s talk <span>↗</span></a></div><div className="footer-bottom"><a className="wordmark" href="#top">AJ<span>.</span></a><span>DESIGNED & BUILT WITH INTENTION</span><div><a href={links.github} target="_blank" rel="noreferrer">GITHUB ↗</a><a href={links.linkedin} target="_blank" rel="noreferrer">LINKEDIN ↗</a><a href="/amitoz_resume.pdf" download>RESUME PDF ↓</a></div><span>© 2026 AMITOZ JATANA</span></div></div></footer>
     </main>
   );
 }
