@@ -123,7 +123,6 @@ export default function Home() {
             <a className="button button-primary" href="#journey">Explore my journey <span>↓</span></a>
             <a className="text-link" href={links.linkedin} target="_blank" rel="noreferrer">Connect on LinkedIn <span>↗</span></a>
           </div>
-          <div className="hero-meta"><span>ENGINEERING AT RBC</span><i /> <span>DOORDASH · DEC &apos;26</span></div>
         </div>
         <div className="hero-art" aria-label="Abstract architectural 3D illustration" role="img">
           <div className="art-grid" />
